@@ -54,3 +54,57 @@ From
   LEFT JOIN pelicula_tags on peliculas.id = pelicula_tags.pelicula_id
 GROUP by
   peliculas.nombre;
+
+
+--Modelo 2 : Preguntas-Respuesta-Usuarios
+--4. Crea las tablas respetando los nombres, tipos, claves primarias y foráneas y tipos de datos.
+-- Tabla Preguntas
+CREATE TABLE preguntas (
+  id SERIAL PRIMARY KEY,
+  pregunta VARCHAR(255),
+  respuesta_correcta VARCHAR
+);
+
+
+--Tabla Usuarios
+CREATE TABLE usuarios(
+  id SERIAL PRIMARY key,
+  nombre VARCHAR(255),
+  edad INTEGER
+);
+
+--Tabla Respuestas
+CREATE TABLE respuestas (
+  id SERIAL PRIMARY KEY,
+  respuesta VARCHAR(255),
+  usuario_id BIGINT,
+  pregunta_id BIGINT,
+  FOREIGN KEy (usuario_id) REFERENCES usuarios (id),
+  FOREIGN KEy (pregunta_id) REFERENCES preguntas (id)
+);
+
+
+-- 5. Agrega datos, 5 usuarios y 5 preguntas, la primera pregunta debe estar contestada dos veces correctamente por distintos usuarios, la pregunta 2 debe estar contestada correctamente sólo por un usuario, y las otras 2 respuestas deben estar incorrectas 
+-- Contestada correctamente significa que la respuesta indicada en la tabla respuestas es exactamente igual al texto indicado en la tabla de preguntas
+
+--ploblamiento tabla Usuarios
+INSERT INTO usuarios (nombre, edad) VALUES ('Fernando',29);
+INSERT INTO usuarios (nombre, edad) VALUES ('Dirk',33);
+INSERT INTO usuarios (nombre, edad) VALUES ('Consuelo',30);
+INSERT INTO usuarios (nombre, edad) VALUES ('Daniel',25);
+INSERT INTO usuarios (nombre, edad) VALUES ('Enzo',33);
+
+--ploblamiento tabla Preguntas
+INSERT INTO preguntas (pregunta, respuesta_correcta) VALUES ('Qué estuvo haciendo Capitana Marvel durante todo este tiempo', 'Pacificando en el espacio' );
+INSERT INTO preguntas (pregunta, respuesta_correcta) VALUES ('Loki está vivo', 'Esta vivo pero atrapado en una TVA de otro universo' );
+INSERT INTO preguntas (pregunta, respuesta_correcta) VALUES ('Cómo encontró Capitana Marvel a Tony Stark y Nebula', 'Por covencion siempre se debe acudir a un llamado de alarta en el espacio' );
+INSERT INTO preguntas (pregunta, respuesta_correcta) VALUES ('Qué pasó con Gamora', 'Gamora murio en el sacrificio de obtener la gema del alma, pero su version de 2014 esta viva en nuestra linea de tiempo actual' );
+INSERT INTO preguntas (pregunta, respuesta_correcta) VALUES ('¿Qué pasó con el Mjolnir, el Thor del pasado se quedó sin martillo?', 'Odin lo llevo a la estrella de los enanos donde obtubo una version disferente del storm Braker ' );
+
+--ploblamiento tabla respuestas
+INSERT INTO respuestas (respuesta, usuario_id, pregunta_id ) VALUES('Pacificando en el espacio',3,1);
+INSERT INTO respuestas (respuesta, usuario_id, pregunta_id ) VALUES('Pacificando en el espacio',4,1);
+INSERT INTO respuestas (respuesta, usuario_id, pregunta_id ) VALUES('Esta vivo pero atrapado en una TVA de otro universo',1,2);
+INSERT INTO respuestas (respuesta, usuario_id, pregunta_id ) VALUES('Esta muerto',2,2);
+INSERT INTO respuestas (respuesta, usuario_id, pregunta_id ) VALUES('Lo mataron porque termino su contrato',5,2);
+
