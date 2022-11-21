@@ -108,3 +108,14 @@ INSERT INTO respuestas (respuesta, usuario_id, pregunta_id ) VALUES('Esta vivo p
 INSERT INTO respuestas (respuesta, usuario_id, pregunta_id ) VALUES('Esta muerto',2,2);
 INSERT INTO respuestas (respuesta, usuario_id, pregunta_id ) VALUES('Lo mataron porque termino su contrato',5,2);
 
+--6. Cuenta la cantidad de respuestas correctas totales por usuario (independiente de la pregunta)
+select
+  usuarios.nombre,
+  count(preguntas.respuesta_correcta) as Respuestas_correctas
+from
+  preguntas
+  RIGHT JOIN respuestas on respuestas.respuesta = preguntas.respuesta_correcta
+  JOIN usuarios on usuarios.id = respuestas.usuario_id
+GROUP by
+  usuario_id,
+  usuarios.nombre;
