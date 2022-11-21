@@ -119,3 +119,13 @@ from
 GROUP by
   usuario_id,
   usuarios.nombre;
+
+-- 7.Por cada pregunta, en la tabla preguntas, cuenta cuántos usuarios tuvieron la respuesta correcta.
+select
+  preguntas.pregunta,
+  COUNT(respuestas.usuario_id) as Respuesta_correctas
+from
+  respuestas
+  RIGHT JOIN preguntas on respuestas.pregunta_id = preguntas.id
+group BY
+  preguntas.pregunta;
