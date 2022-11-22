@@ -2,7 +2,7 @@
 --subjet Prueba Final Modulo SQL Desafio Latam G21
 
 --  Creacion base datos
-CREATE DATABASE prueba_final_cristian_venegas_674 -- 1. Crea el modelo (revisa bien cuál es el tipo de relación antes de crearlo), respeta las claves primarias, foráneas y tipos de datos.
+CREATE DATABASE prueba_final_cristian_venegas_643 -- 1. Crea el modelo (revisa bien cuál es el tipo de relación antes de crearlo), respeta las claves primarias, foráneas y tipos de datos.
 
 --1. Tabla Peliculas
 CREATE TABLE Peliculas (
@@ -39,11 +39,11 @@ INSERT INTO tags (tag) VALUES ('Fantasía');
 INSERT INTO tags (tag) VALUES ('Drama');
 
 --Tabla Intemedia Peliculas_tags
-INSER INTO pelicula_tags (pelicula_id, tag_id) VALUES (1,1);
-INSER INTO pelicula_tags (pelicula_id, tag_id) VALUES (1,2);
-INSER INTO pelicula_tags (pelicula_id, tag_id) VALUES (1,4);
-INSER INTO pelicula_tags (pelicula_id, tag_id) VALUES (2,1);
-INSER INTO pelicula_tags (pelicula_id, tag_id) VALUES (2,2);
+INSERT INTO pelicula_tags (pelicula_id, tag_id) VALUES (1,1);
+INSERT INTO pelicula_tags (pelicula_id, tag_id) VALUES (1,2);
+INSERT INTO pelicula_tags (pelicula_id, tag_id) VALUES (1,4);
+INSERT INTO pelicula_tags (pelicula_id, tag_id) VALUES (2,1);
+INSERT INTO pelicula_tags (pelicula_id, tag_id) VALUES (2,2);
 
 --3. Cuenta la cantidad de tags que tiene cada película. Si una película no tiene tags debe
 select
@@ -144,3 +144,6 @@ ALTER TABLE usuarios ADD CHECK (edad > 18);
 
 --10. Altera la tabla existente de usuarios agregando el campo email con la restricción de único.
 ALTER TABLE usuarios ADD email VARCHAR(50) UNIQUE;
+
+
+--  LINK  https://www.loom.com/share/6f54b0efae84433394c09e35524117d8
