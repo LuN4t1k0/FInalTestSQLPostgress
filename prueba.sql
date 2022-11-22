@@ -138,3 +138,6 @@ ALTER TABLE respuestas DROP CONSTRAINT respuestas_usuario_id_fkey, ADD FOREIGN K
 
 --8.2 Eliminacion Usuario 
 DELETE FROM usuarios WHERE id = 1;
+
+--9. Crea una restricción que impida insertar usuarios menores de 18 años en la base de datos.
+ALTER TABLE usuarios ADD CHECK (edad > 18); 
