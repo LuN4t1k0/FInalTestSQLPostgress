@@ -141,3 +141,6 @@ DELETE FROM usuarios WHERE id = 1;
 
 --9. Crea una restricción que impida insertar usuarios menores de 18 años en la base de datos.
 ALTER TABLE usuarios ADD CHECK (edad > 18); 
+
+--10. Altera la tabla existente de usuarios agregando el campo email con la restricción de único.
+ALTER TABLE usuarios ADD email VARCHAR(50) UNIQUE;
