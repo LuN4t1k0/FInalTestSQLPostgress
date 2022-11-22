@@ -129,3 +129,12 @@ from
   RIGHT JOIN preguntas on respuestas.pregunta_id = preguntas.id
 group BY
   preguntas.pregunta;
+
+
+--8. Implementa borrado en cascada de las respuestas al borrar un usuario y borrar el primer usuario para probar la implementación.
+
+--8.1 Implementacion 
+ALTER TABLE respuestas DROP CONSTRAINT respuestas_usuario_id_fkey, ADD FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE;
+
+--8.2 Eliminacion Usuario 
+DELETE FROM usuarios WHERE id = 1;
